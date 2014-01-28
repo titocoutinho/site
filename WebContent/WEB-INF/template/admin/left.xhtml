@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+	<center>
+	<div style="width: 95%">
+		<h:form>
+			<p:menubar styleClass="menuButton" >
+				<p:submenu label="Cadastro de Menus" icon="ui-icon-document">
+					<p:menuitem value="Itens" outcome="/admin/cadastros/categoria/cadastro" />
+					<p:menuitem value="Sub Itens" outcome="/admin/cadastros/subcategoria/cadastro" />
+				</p:submenu>
+				<p:submenu label="Cadastros de Conteúdo" icon="ui-icon-document">
+					<p:submenu label="Artigo" icon="ui-icon-document">
+						<p:menuitem value="Artigos" outcome="/admin/cadastros/artigo/cadastro" />
+						<p:menuitem value="Imagem" outcome="/admin/cadastros/artigo/imagens" />
+					</p:submenu>
+					<p:submenu label="Galeria" icon="ui-icon-document">
+						<p:menuitem value="Cadastrar" outcome="/admin/cadastros/galeria/cadastro" />
+						<p:menuitem value="Adicionar Imagens" outcome="/admin/cadastros/galeria/imagens" />
+					</p:submenu>
+					<p:submenu label="Municipios" icon="ui-icon-document">
+						<p:menuitem value="Cadastrar Municipios" outcome="/admin/cadastros/municipio/cadastro" />
+					<p:menuitem value="Cadastrar Caracteristicas" outcome="/admin/cadastros/caracteristica/cadastro" />
+					<p:menuitem value="Dados por Municipio" outcome="/admin/cadastros/dado/cadastro" />
+					</p:submenu>
+					
+					<p:menuitem value="Eventos" outcome="/admin/cadastros/evento/cadastro" />
+					<p:menuitem value="Fale Conosco" outcome="/admin/cadastros/comunicacao/cadastro" />
+				</p:submenu>
+				<p:submenu label="Controle de Usuários"  icon="ui-icon-contact">
+					<p:menuitem value="Usuários" outcome="/admin/cadastros/usuario/cadastro" />
+				</p:submenu>
+				
+				<p:submenu label="Auxiliar" icon="ui-icon-gear">
+					<p:menuitem value="Site" outcome="/index" icon="ui-icon-newwin" target="_blank"/>
+					<p:menuitem value="Adminitrativo" outcome="/admin/home" />
+					<p:menuitem value="Parametros" outcome="/admin/cadastros/parametro/cadastro" />
+				</p:submenu>
+			</p:menubar>
+		</h:form>
+		</div>
+		</center>
+	</ui:composition>
+</h:body>
+</html>

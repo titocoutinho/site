@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutCadastro.xhtml">
+
+	<ui:param name="bean" value="#{subCategoriaManager}" />
+	<ui:param name="cadastro" value="true" />
+	<ui:define name="cadastro">
+		<p:outputLabel value="Categoria: " for="pessoa" />
+				
+				<p:selectOneMenu id="pessoa" styleClass="loginform_select"  style="width:240px;" value="#{bean.objeto.categoria}" converter="categoriaConverter"  required="true" requiredMessage="Selecione uma Categoria">
+					<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+					<f:selectItems value="#{bean.categorias}" var="off" itemValue="#{off}" itemLabel="#{off.nome}" />
+				</p:selectOneMenu>
+				
+			<p:outputLabel value="Nome" />
+			<p:inputText value="#{bean.objeto.nome}" styleClass="loginform_input"/>
+			<p:outputLabel value="ativo" />
+			<p:selectBooleanCheckbox value="#{bean.objeto.ativo}" />
+		
+	</ui:define>
+	
+		<ui:define name="alterar">
+		<p:outputLabel value="Categoria: " for="pessoa" />
+				
+				<p:selectOneMenu id="pessoa" styleClass="loginform_select"  style="width:240px;" value="#{bean.objeto.categoria}" converter="categoriaConverter"  required="true" requiredMessage="Selecione uma Categoria">
+					<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+					<f:selectItems value="#{bean.categorias}" var="off" itemValue="#{off}" itemLabel="#{off.nome}" />
+				</p:selectOneMenu>
+				
+			<p:outputLabel value="Nome" />
+			<p:inputText value="#{bean.objeto.nome}" styleClass="loginform_input"/>
+			<p:outputLabel value="ativo" />
+			<p:selectBooleanCheckbox value="#{bean.objeto.ativo}" />
+		
+	</ui:define>
+	
+	<ui:define name="lista">
+		<p:column headerText="Nome">
+			<center>
+				<p:outputLabel value="#{item.nome}" />
+			</center>
+		</p:column>
+
+		
+	</ui:define>
+</ui:composition>
+</html>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#admin#login#login.xhtml"
+  PATH="/admin/login/login.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#login#login.xhtml:0" NAME="item"
+   PATH="/admin/login/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="autenticacao-bem-sucedida::#admin#home.xhtml" NAME="output"
+    PATH="/admin/home.xhtml" TARGET="rules:#admin#home.xhtml"
+    TITLE="autenticacao-bem-sucedida" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="autenticacao-falha::#admin#login#login.xhtml" NAME="output1"
+    PATH="/admin/login/login.xhtml"
+    TARGET="rules:#admin#login#login.xhtml" TITLE="autenticacao-falha" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cadastro::#admin#login#cadastroSite.xhtml"
+    NAME="output2" PATH="/admin/login/cadastroSite.xhtml"
+    TARGET="rules:#admin#login#cadastroSite.xhtml" TITLE="cadastro" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="cadastro-bem-sucedido::#admin#home.xhtml"
+    NAME="output3" PATH="/admin/home.xhtml"
+    TARGET="rules:#admin#home.xhtml" TITLE="cadastro-bem-sucedido" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#login#cadastroSite.xhtml"
+  PATH="/admin/login/cadastroSite.xhtml" SHAPE="288,241,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#home.xhtml" PATH="/admin/home.xhtml"
+  SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

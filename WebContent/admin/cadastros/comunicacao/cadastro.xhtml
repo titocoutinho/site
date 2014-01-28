@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutBase.xhtml">
+
+	<ui:param name="bean" value="#{comunicacaoManager}" />
+	<ui:param name="cadastro" value="false" />
+		<ui:define name="main">
+		<h:form  id="formLista" prependId="false">
+		
+		<h:panelGrid  width="100%" style="background-color: #CCCCCC;" >
+		<div >
+
+			 <h:panelGrid columns="2" id="objetoID" width="100%" >
+        	<p:outputLabel value="Nome :" /> <p:outputLabel value="#{comunicacaoManager.objeto.nomeEmissor}" />	
+        	<p:outputLabel value="Email :" /> <p:outputLabel value="#{comunicacaoManager.objeto.emailEmissor}" />
+        	<p:outputLabel value="Título :" /> 
+        	 <h:panelGrid columns="3" >
+        	 <p:outputLabel value="#{comunicacaoManager.objeto.titulo}" style="width:700px;"/>
+        	  <p:outputLabel value="Responder :" style=""/>
+        	 	  <p:commandLink title="Responder" update=":formAlterar:Alterar"
+                                                oncomplete="dialogAlterar.show()" immediate="true">
+                                               
+                                                <p:graphicImage value="/resources/img/edit.png" />
+                                               
+                                        </p:commandLink>
+        	</h:panelGrid>
+        </h:panelGrid>
+        <p:inputTextarea disabled="true" readonly="true"  value="#{comunicacaoManager.objeto.corpo}" cols="100" rows="10" style="width:99%; resize: horizontal"/>
+			</div>
+					 <p:dataTable value="#{comunicacaoManager.listaObjeto}" var="item" paginator="true"  rows="7">
+				<p:column headerText="enviador por" sortBy="#{item.nomeEmissor}">
+			<center>
+				<p:outputLabel value="#{item.nomeEmissor}" />
+			</center>
+		</p:column>
+		
+		<p:column headerText="Assunto" sortBy="#{item.titulo}">
+					<center>
+						<p:outputLabel value="#{item.titulo}" />
+					</center>
+				</p:column>
+				<p:column headerText="Data" sortBy="#{item.criado}">
+					<center>
+						<p:outputLabel value="#{item.criado}" />
+					</center>
+				</p:column>
+				<p:column headerText="ações">
+					 <p:commandButton id="selectButton" update="@form"  icon="ui-icon-search" title="Visualizar"> 
+					 <f:setPropertyActionListener value="#{item}" target="#{comunicacaoManager.objeto}" /> 
+					 </p:commandButton> 
+				</p:column>
+			</p:dataTable>
+			
+		</h:panelGrid>
+
+		</h:form>
+		
+		<h:form id="formAlterar" enctype="multipart/form-data">
+		<p:growl id="growl"></p:growl>
+		<p:dialog header="Responder Email" widgetVar="dialogAlterar" modal="true" width="800px; height:500px;"
+                        id="Alterar">
+			<h:inputHidden value="#{bean.objeto.id}" id="identificador" />
+					<h:panelGrid columns="2"  columnClasses="" styleClass="" width="100%" >
+						<p:editor value="#{comunicacaoManager.objeto.resposta}" />
+					</h:panelGrid>
+					
+					 <p:commandButton value="Responder"
+                                actionListener="#{comunicacaoManager.alterar}"
+                                update=":formLista" onclick="dialogAlterar.hide()" />
+		</p:dialog>
+		
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutCadastro.xhtml">
+	<ui:param name="bean" value="#{galeriaManager}" />
+	<ui:param name="cadastro" value="false" />
+	<ui:define name="alterar">
+	
+	<p:dataTable var="foto" value="#{galeriaManager.objeto.imagens}" editable="true" paginator="true" rows="10">
+		<f:facet name="header">  
+            caracteristicas do municipio de #{galeriaManager.objeto.titulo}  
+        </f:facet>  
+        <p:ajax event="rowEdit" listener="#{galeriaManager.onEdit}"  />  
+        <p:ajax event="rowEditCancel" listener="#{galeriaManager.onCancel}"  />  
+	
+		<p:column style="width:10px"  >
+			<p:outputLabel value="#{foto.id}" />
+		</p:column>
+		
+		<p:column style="width:50px"  >
+		<p:outputLabel value="#{foto.titulo}" />
+		</p:column>
+		<p:column  style="width:300px" width="300">	
+			 <p:cellEditor>  
+               <f:facet name="output" style="width:100%;">  
+                   <p:inputText readonly="true" cols="30" value="#{foto.nome}" style="max-width:300px;"/>  
+               </f:facet>  
+               <f:facet name="input"> 
+               	<p:inputText value="#{foto.nome}" readonly="false" cols="40" style="width:50%;" rows="10"/>
+               </f:facet>  
+           </p:cellEditor>  
+		</p:column>
+		<p:column >  
+            <p:rowEditor />  
+        </p:column>  
+		<p:column headerText="Excluir">
+		</p:column>	
+		<f:facet name="footer"></f:facet>
+		</p:dataTable>
+	
+	</ui:define>
+	<ui:define name="lista">
+
+		<p:column headerText="Título">
+			<h:outputText value="#{item.titulo}" />
+		</p:column>
+		<p:column headerText="Descrição" width="25%" resizable="false" style="width:250px;">
+			<h:outputText value="#{item.diretorio}" />
+			
+		</p:column>
+		<p:column headerText="Imagens" width="25%" resizable="false" style="width:250px;">
+
+			<p:commandButton id="basic" value="Basic" oncomplete="carDialog.show()" onclick="dlg#{item.id}.show();" type="button" />
+			<p:dialog id="basicDialog" header="#{item.titulo}" widgetVar="dlg#{item.id}">
+				<p:galleria value="#{item.imagens}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+					<p:graphicImage value="#{request.contextPath}/../../#{item.diretorio}#{image.titulo}" alt="Image Description for #{image.titulo}" title="#{image.titulo}"/>  
+				</p:galleria>
+			</p:dialog>
+		</p:column>
+	</ui:define>
+</ui:composition>
+</html>

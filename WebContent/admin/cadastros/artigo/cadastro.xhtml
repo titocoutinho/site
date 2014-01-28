@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutCadastro.xhtml">
+	<ui:param name="bean" value="#{artigoManager}" />
+	<ui:param name="cadastro" value="true" />
+	<ui:define name="cadastro">
+			<p:outputLabel value="Categoria: " for="pessoa" />
+
+	<p:selectOneMenu id="pessoa" 
+		value="#{bean.objeto.categoria}" converter="categoriaConverter"
+		required="true" requiredMessage="Selecione uma Categoria">
+		<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+		<f:selectItems value="#{bean.categorias}" var="off" itemValue="#{off}"
+			itemLabel="#{off.nome}" />
+	</p:selectOneMenu> 
+
+	<p:outputLabel value="Municipio: " for="pessoa" />
+	<p:selectOneMenu id="municipio" 
+		value="#{bean.objeto.municipio}" converter="municipioConverter"
+		required="false" requiredMessage="Selecione uma Categoria">
+		<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+		<f:selectItems value="#{bean.municipios}" var="off" itemValue="#{off}"
+			itemLabel="#{off.nome}" />
+	</p:selectOneMenu>
+	<p:outputLabel value="Destaque: " for="pessoa" />
+
+
+
+	
+	<p:outputLabel value="Titulo" />
+	<p:inputText value="#{bean.objeto.titulo}"  />
+	<p:outputLabel value="Texto" />
+	<p:editor value="#{bean.objeto.corpo}" width="800" />
+	</ui:define>
+	<ui:define name="alterar">
+			<p:outputLabel value="Categoria: " for="pessoa" />
+
+	<p:selectOneMenu id="pessoa" 
+		value="#{bean.objeto.categoria}" converter="categoriaConverter"
+		required="true" requiredMessage="Selecione uma Categoria">
+		<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+		<f:selectItems value="#{bean.categorias}" var="off" itemValue="#{off}"
+			itemLabel="#{off.nome}" />
+	</p:selectOneMenu> 
+
+	<p:outputLabel value="Municipio: " for="pessoa" />
+	<p:selectOneMenu id="municipio" 
+		value="#{bean.objeto.municipio}" converter="municipioConverter"
+		required="false" requiredMessage="Selecione uma Categoria">
+		<f:selectItem itemLabel="Selecione " noSelectionOption="true" />
+		<f:selectItems value="#{bean.municipios}" var="off" itemValue="#{off}"
+			itemLabel="#{off.nome}" />
+	</p:selectOneMenu>
+	<p:outputLabel value="Destaque: " for="pessoa" />
+
+	<p:selectOneRadio id="destaque" value="#{bean.objeto.destaque}" required="false">
+		<f:selectItems value="#{bean.boleanos}" />
+	</p:selectOneRadio>
+
+
+
+	<p:outputLabel value="Foto" />
+	<h:panelGrid columns="2">
+
+
+		<p:fileUpload id="upload" value="#{artigoManager.file}"
+			mode="advanced" fileUploadListener="#{bean.fileUploadAction}"
+			dragDropSupport="false" multiple="false" sizeLimit="10000000"
+			allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+	</h:panelGrid>
+	<p:outputLabel value="Titulo" />
+	<p:inputText value="#{bean.objeto.titulo}"  />
+	<p:outputLabel value="Texto" />
+	<p:editor value="#{bean.objeto.corpo}" width="800" />
+	</ui:define>
+	<ui:define name="lista">
+		<p:column headerText="Minicípio">
+			<center>
+				<p:outputLabel value="#{item.municipio.nome}" />
+			</center>
+		</p:column>
+		<p:column headerText="Categoria" filterBy="#{item.categoria.nome}">
+			<center>
+				<p:outputLabel value="#{item.categoria.nome}" />
+			</center>
+		</p:column>
+		<p:column headerText="Título Artigo">
+			<center>
+				<p:outputLabel value="#{item.titulo}" />
+			</center>
+		</p:column>
+		<p:column headerText="Destaques" filterBy="#{item.destaque}">
+			<center>
+				<p:outputLabel value="#{item.destaque}" />
+			</center>
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+</html>
+

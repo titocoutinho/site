@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutMunicipio.xhtml">
+
+	<ui:define name="municipio">
+		<f:param value="#{municipioSiteManager.municipio}" name="municipio"/>
+		<f:param value="#{municipioSiteManager.subcategoria}" name="subcategoria"/>
+		<h:form id="notForm" prependId="false">
+			<div class="row">
+				<div class="span12" align="center">
+					<h3>#{municipioSiteManager.selecionado().nome}</h3>
+				</div>
+			</div>
+			<div class="accordion" id="accordion">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-popNot" href="#accordion-element-popNot">Notícias</a>
+					</div>
+						
+					<div id="accordion-element-popNot" class="accordion-body collapse">
+							<div class="accordion-inner">
+							
+								<ui:repeat var="art" value="#{municipioSiteManager.selecionado().artigos}">
+								<div class="span10"> 
+									
+									<h:outputLink value="#{request.contextPath}/a/artigo.php"  >
+										<h:outputText styleClass="graybold" value="#{art.titulo}"/> 
+										<f:param name="categoria" value="#{art.categoria.id}" />
+										<f:param name="materia" value="#{art.id}" />
+									</h:outputLink>
+							<!-- 		<h:link  outcome="a/artigo" value="#{art.titulo}" >
+										<f:param name="categoria" value="#{art.categoria.id}" />
+										<f:param name="materia" value="#{art.id}" />
+									</h:link>   -->
+								</div>
+								
+								</ui:repeat>
+								
+							</div>
+						</div>	
+				
+		
+					
+				</div>
+					<ui:repeat var="dado" value="#{municipioSiteManager.selecionado().dados}" >
+					<div class="accordion-group">
+						<div class="accordion-heading">
+							 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-#{dado.id}" href="#accordion-element-#{dado.id}">#{dado.caracteristica.nomeCaracteristica}</a>
+						</div>
+						<div id="accordion-element-#{dado.id}" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<c:set var="teste"  value="${fn:contains(dado.caracteristica.nomeCaracteristica.toString(),'Notícias' )}"/>
+								<c:choose>
+								<c:when test="${teste==false}" >
+									<div align="justify" >
+										<h:outputText value="#{dado.valor}"  escape="false"/> 
+									</div>
+								</c:when>
+								</c:choose>
+							</div>
+						</div>
+						
+						
+					</div>
+					</ui:repeat>
+				
+				
+				</div>
+				</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+

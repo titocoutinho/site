@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutMateria.xhtml">
+	<ui:define name="materia">
+		<div class="row-fluid">
+			<div class="span12" >
+				<div class="" align="center">
+					<h1>Fale Conosco</h1>
+					<h:form styleClass="form" title="Fale Conosco">
+					<h:panelGrid columns="2"   id="digitar" rendered="#{comunicacaoManager.estadoEnviar}"  > 
+						
+							
+							<p:outputLabel value="Título :" />
+							<h:inputText value="#{comunicacaoManager.objeto.titulo}" size="45" styleClass="teste" style="width:600px;"  /> 
+							<p:outputLabel value="Corpo :" />
+							<h:inputTextarea value="#{comunicacaoManager.objeto.corpo}" rows="10" cols="40" style="width:600px;" />
+							<p:outputLabel value="Email :" />
+							<h:inputText value="#{comunicacaoManager.objeto.emailEmissor}" style="width:600px;" />
+							<p:outputLabel value="Nome :" />
+							<h:inputText value="#{comunicacaoManager.objeto.nomeEmissor}" style="width:600px;" /> 
+							<p:outputLabel value="" />
+							<p:commandButton action="#{comunicacaoManager.adiciona()}" value="Enviar" update="@form"/>
+						
+						</h:panelGrid>
+						<h:panelGrid id="enviado" rendered="#{!comunicacaoManager.estadoEnviar}" style="width:600px;">
+                        	<h2>Enviado com Sucesso!</h2>
+                    		<p:commandLink value="Voltar" action="#{comunicacaoManager.voltar()}" update="@form"></p:commandLink>
+                    	</h:panelGrid>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
+

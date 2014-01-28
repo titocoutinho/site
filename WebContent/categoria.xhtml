@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutBase_comCarrosel.xhtml">
+
+<ui:define name="carrosel">
+		<f:param value="#{categoriaSiteManager.categoria}" name="categoria" />
+		<f:param value="#{categoriaSiteManager.materia}" name="materia" />
+		
+ 	<div class="row">
+ 		<div class="span8">
+				<c:choose>
+		<c:when test="#{not empty categoriaSiteManager.destaquesArtigoCarrosel}">
+	<div id="carousel" class="carousel slide">
+	
+		<ol class="carousel-indicators">
+			<ui:repeat var="destaque" value="#{categoriaSiteManager.destaquesArtigoCarrosel}" varStatus="step">
+					<li data-slide-to="#{step.index}" data-target="#carousel"/>
+			</ui:repeat>		
+		</ol>
+	
+	
+           <!-- Carousel items -->
+			<div class="carousel-inner">			
+			<ui:repeat var="destaque" value="#{categoriaSiteManager.destaquesArtigoCarrosel}">
+			<div class="item"><center>
+					<img 
+							src="#{request.contextPath}/../artigo/#{destaque.id}.jpg" style="max-height: 350px;"  /></center>
+					<div class="carousel-caption">
+						
+						<h:link outcome="a/artigo" >
+								<f:param name="categoria" value="#{destaque.categoria.id}" />
+								<f:param name="materia" value="#{destaque.id}" />
+								<h4 style="font-weight: bold">#{destaque.titulo}</h4>
+								<p style="font-weight: bold">#{destaque.textoResumido(50)}</p>
+							</h:link>
+					</div>
+				</div>			
+			</ui:repeat>			
+			</div>
+			<a data-slide="prev" href="#carousel" class="left carousel-control">‹</a>
+			<a data-slide="next" href="#carousel" class="right carousel-control">›</a>
+			
+        </div>
+        </c:when>
+        </c:choose>
+		</div>
+		
+			<div class="span4">
+					<div class="page-header">
+						<h2 style="font-weight: bold; color: #fff;">#{categoriaSiteManager.primeiroArtigo.titulo}</h2>
+						<c:choose>
+					<c:when test="#{not empty categoriaSiteManager.primeiroArtigo.municipio.nome}">
+						<SPAN class="label" style="font-weight: bold; color: #fff;"> #{categoriaSiteManager.primeiroArtigo.municipio.nome}</SPAN>
+						</c:when>
+						</c:choose>
+					</div>
+					<p align="justify">
+						<h:outputText value="#{categoriaSiteManager.primeiroArtigo.textoResumido(350)}" escape="false" style="font-weight: bold; color: #fff;" />
+					</p>
+					<p>
+						<div class="pull-right">							
+							<h:link styleClass="btn btn-primary" outcome="a/artigo" value="Ver mais &raquo;">
+								<f:param name="categoria" value="#{categoriaSiteManager.primeiroArtigo.categoria.id}" />
+								<f:param name="materia" value="#{categoriaSiteManager.primeiroArtigo.id}" />
+							</h:link>
+						</div>
+					</p>
+				</div>
+		
+		
+		</div>
+	
+ 			</ui:define>
+
+
+	<ui:define name="main">
+		<f:param value="#{categoriaSiteManager.categoria}" name="categoria" />
+		<f:param value="#{categoriaSiteManager.materia}" name="materia" />
+		
+	<h:form prependId="false">
+	
+		<hr/>
+		<div class="row">
+			<div class="span12">
+				<div class="well text-center">
+				</div>
+			</div>
+		</div>
+		<c:choose>
+		
+			<c:when test="#{not empty categoriaSiteManager.listaArtigoCategoria()}">
+		<div class="row-fluid">
+		
+		<div class="row">
+		<c:forEach var="item" items="#{categoriaSiteManager.listaArtigoCategoria()}" begin="0" end="2" varStatus="count">
+		<div class="span4">
+					<div class="page-header">
+						<h2>#{item.titulo}</h2>
+						<SPAN class="label"> #{item.municipio.nome}</SPAN>
+					</div>
+					<p align="justify">
+						<h:outputText value="#{item.textoResumido(350)}" escape="false" />
+					</p>
+					<p>
+						<div class="pull-right">							
+							<h:link styleClass="btn btn-primary" outcome="a/artigo" value="Ver mais &raquo;">
+								<f:param name="categoria" value="#{item.categoria.id}" />
+								<f:param name="materia" value="#{item.id}" />
+							</h:link>
+						</div>
+					</p>
+			
+				</div>
+		
+		</c:forEach>
+		
+		</div>
+		
+			<div class="row">
+		<c:forEach var="item" items="#{categoriaSiteManager.listaArtigoCategoria()}" begin="3" end="5" varStatus="count">
+		<div class="span4">
+					<div class="page-header">
+						<h2>#{item.titulo}</h2>
+						<SPAN class="label"> #{item.municipio.nome}</SPAN>
+					</div>
+					<p align="justify">
+						<h:outputText value="#{item.textoResumido(350)}" escape="false" />
+					</p>
+					<p>
+						<div class="pull-right">							
+							<h:link styleClass="btn btn-primary" outcome="a/artigo" value="Ver mais &raquo;">
+								<f:param name="categoria" value="#{item.categoria.id}" />
+								<f:param name="materia" value="#{item.id}" />
+							</h:link>
+						</div>
+					</p>
+			
+				</div>
+		
+		</c:forEach>
+		
+		</div>
+		
+			<div class="row">
+		<c:forEach var="item" items="#{categoriaSiteManager.listaArtigoCategoria()}" begin="6" end="8" varStatus="count">
+		<div class="span4">
+					<div class="page-header">
+						<h2>#{item.titulo}</h2>
+						<SPAN class="label"> #{item.municipio.nome}</SPAN>
+					</div>
+					<p align="justify">
+						<h:outputText value="#{item.textoResumido(350)}" escape="false" />
+					</p>
+					<p>
+						<div class="pull-right">							
+							<h:link styleClass="btn btn-primary" outcome="a/artigo" value="Ver mais &raquo;">
+								<f:param name="categoria" value="#{item.categoria.id}" />
+								<f:param name="materia" value="#{item.id}" />
+							</h:link>
+						</div>
+					</p>
+			
+				</div>
+		
+		</c:forEach>
+		
+		</div>
+		
+	
+	</div>
+	</c:when>
+		</c:choose>
+		</h:form>
+		<c:choose>
+			<c:when test="#{not empty categoriaSiteManager.listaLazy.artigos}">
+		<div class="row">
+			<span class="span12">
+				<h3> Notícias</h3>				
+			</span>
+		</div>
+		/site
+		
+		<h:form id="artigosLazy">
+			<ui:repeat value="#{categoriaSiteManager.listaLazy.artigos}" var="item">
+				<div class="row">
+					<span class="span12" style="text-align: justify;"> <span
+						class="label"> <h:outputText value="#{item.criado}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText> - <h:outputText value="#{item.municipio.nome}" />
+					</span>
+					</span> <span class="span12"> <strong>#{item.titulo} :</strong>
+						
+						<h:link  outcome="a/artigo" value="#{item.textoResumido(100)}...">
+								<f:param name="categoria" value="#{item.categoria.id}" />
+								<f:param name="materia" value="#{item.id}" />
+							</h:link>
+					</span>
+					
+				</div>
+			</ui:repeat>
+			<h:commandLink action="#{categoriaSiteManager.listaLazy.proximaPagina()}"
+				value="Ver mais..." rendered="#{categoriaSiteManager.listaLazy.temMais()}">
+				<f:ajax render="artigosLazy" />
+			</h:commandLink>
+		</h:form>
+		</c:when>
+		</c:choose>
+	</ui:define>
+</ui:composition>
+
+</html>

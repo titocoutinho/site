@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutFotos.xhtml">
+	<f:param value="#{ImagensSiteManager.galeria}" name="galeria" />
+	<ui:define name="titulo">
+		<h:outputText value="#{imagensSiteManager.selecionado().titulo}" />
+	</ui:define>
+	<ui:define name="descricao">
+		<h:outputText value="#{imagensSiteManager.selecionado().descricao}" />
+	</ui:define>
+	<ui:define name="galeria">
+		<p:lightBox styleClass="imagebox" iframe="true" iframeTitle="#{imagensSiteManager.selecionado().titulo}">
+
+			<ui:repeat var="img" value="#{imagensSiteManager.selecionado().imagens}">
+				<li class="span4">
+					<h:outputLink value="#{menuManager.urlFotos}#{imagensSiteManager.selecionado().titulo}/#{img.titulo}" styleClass="thumbnail inner-border">
+						<span></span>
+						
+							<p:graphicImage value="/#{menuManager.urlFotos}#{imagensSiteManager.selecionado().titulo}/#{img.thumb}" />
+						
+					</h:outputLink>
+				</li>
+			</ui:repeat>
+		</p:lightBox>
+	</ui:define>
+</ui:composition>
+</html>

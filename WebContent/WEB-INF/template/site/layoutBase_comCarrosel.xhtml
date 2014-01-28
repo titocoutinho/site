@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	<meta name="description" content="" />
+	<meta name="author" content="Gilvan Filho" />
+	<META HTTP-EQUIV='Pragma' CONTENT='no-cache' />
+	<META HTTP-EQUIV="Expires" CONTENT="-1" />
+	<ui:include src="./header.xhtml" />
+</h:head>
+
+<h:body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+	<ui:include src="./topo.xhtml" />
+	<div class="row-fluid carousel-back">
+		<div class="container corpo_site">
+			<ui:insert name="carrosel" />
+		</div>
+	</div>
+	<div class="container corpo_site">
+			<ui:insert name="main" />
+	</div>
+
+	<ui:include src="./rodape.xhtml" />
+	<ui:include src="./script.xhtml" />
+</h:body>
+</html>

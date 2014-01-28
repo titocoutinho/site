@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:component>
+		
+	<h:outputScript name="jquery.min.js" library="js" />
+	<h:outputScript name="bootstrap.min.js" library="js" />
+
+	<script type="text/javascript">
+            $(document).ready(function() {        
+        $('#carousel').carousel({ interval: 4000 })
+            });
+
+            $('#carousel').bind('slid', function(e){ //This event is fired when the carousel has completed its slide transition.
+            	index = $('#carousel .item').index($('#carousel .carousel-inner .active')); // find the index of current slide
+            	$('.carousel-navbar .current').removeClass('current'); // reset the navigation
+            	$('.carousel-nav').eq(index).addClass('current'); // update the navigation
+            	});
+
+            $('.carousel-nav').bind('click', function(e){
+            	$('.carousel-navbar .current').removeClass('current'); // reset the navigation
+            	index = $('.carousel-nav').index(this); // find the clicked slide navigation
+            	$('#carousel').carousel(index); // navigate to the selected slider
+            	$(this).addClass('current'); // mark selected to the clicked navigation
+            	});
+        	
+	</script>
+		 
+	</ui:component>
+</html>

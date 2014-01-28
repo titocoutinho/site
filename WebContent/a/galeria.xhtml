@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutGaleria.xhtml">
+	<ui:define name="galeria">
+		<ui:repeat var="item" value="#{galeriaManager.listaObjeto}" >
+			<li class="span4">
+				<div class="thumbnail">
+					<h4>${item.titulo}</h4>
+					<IMG alt="${item.imagens.get(0).titulo}" src="${item.diretorio}${item.imagens.get(0).titulo}"  width="350px" height="265"/>
+					<p align="justify">${item.descricao}</p> 
+				 		<h:form prependId="false">
+	         				<h:link styleClass="btn btn-primary" outcome="/imagens" value="Ver mais &raquo;" >
+	            				<f:param name="galeria" value="#{item.id}" />
+	            			</h:link>
+	        			</h:form>
+				</div>
+			</li>
+		</ui:repeat>
+	</ui:define>
+</ui:composition>
+</html>

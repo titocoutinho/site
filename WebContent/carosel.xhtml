@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:component>
+	<c:choose>
+		<c:when test="#{not empty bean.destaquesArtigoCarrosel}">
+	<div id="carousel" class="carousel slide">
+	
+		<ol class="carousel-indicators">
+			<ui:repeat var="destaque" value="#{bean.destaquesArtigoCarrosel}" varStatus="step">
+					<li data-slide-to="#{step.index}" data-target="#carousel"/>
+			</ui:repeat>		
+		</ol>
+	
+	
+           <!-- Carousel items -->
+			<div class="carousel-inner">			
+			<ui:repeat var="destaque" value="#{bean.destaquesArtigoCarrosel}">
+			<div class="item"><center>
+					<img 
+							src="#{request.contextPath}/../artigo/#{destaque.id}.jpg" style="max-height: 350px;"  /></center>
+					<div class="carousel-caption">
+						
+						<h:link outcome="a/artigo" >
+								<f:param name="categoria" value="#{destaque.categoria.id}" />
+								<f:param name="materia" value="#{destaque.id}" />
+								<h4 style="font-weight: bold">#{destaque.titulo}</h4>
+								<p style="font-weight: bold">#{destaque.textoResumido(50)}</p>
+							</h:link>
+					</div>
+				</div>			
+			</ui:repeat>			
+			</div>
+			<a data-slide="prev" href="#carousel" class="left carousel-control">‹</a>
+			<a data-slide="next" href="#carousel" class="right carousel-control">›</a>
+			
+        </div>
+        </c:when>
+        </c:choose>
+	</ui:component>
+</html>

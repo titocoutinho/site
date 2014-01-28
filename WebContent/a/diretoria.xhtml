@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutMateria.xhtml">
+	<ui:define name="materia">
+	
+		<div class="row"> 
+        <div class="span12" style="min-height: 600px;"> 
+		
+		 <div class="page-header">
+			<h1>#{categoriaSiteManager.artigoSelecionado().titulo}</h1>
+			<small>Nome do Município</small>
+			</div>
+		<p align="justify"><h:outputText value="#{categoriaSiteManager.artigoSelecionado().corpo}" escape="false"/></p>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
+

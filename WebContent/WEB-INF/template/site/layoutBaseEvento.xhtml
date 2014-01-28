@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<ui:include src="./header.xhtml" />
+
+</h:head>
+
+<h:body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+<ui:include src="./topo.xhtml" />
+	
+		<div class="container corpo_site1">
+			<ui:insert name="main" />
+		</div>
+		<hr />
+		<!-- /container -->
+	
+	<ui:include src="./rodape.xhtml" />
+		<h:outputScript name="bootstrap.min.js" library="js" />
+</h:body>
+</html>

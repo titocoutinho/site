@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/site/layoutBaseEvento.xhtml">
+	<ui:define name="main">
+	<div id="conteudo">
+            
+            <h:form>  
+                
+                <p:messages id="mensagens" showDetail="true" />
+                
+                <p:schedule widgetVar="meucalendario" 
+                    locale="pt" value="#{eventoManager.eventModel}" >
+                    
+                    <!-- eventos -->
+                    <p:ajax event="dateSelect" listener="#{eventoManager.quandoNovo}" 
+                            update="eventDetails" oncomplete="caixaDialogo.show()" />  
+                    <p:ajax event="eventSelect" listener="#{eventoManager.quandoSelecionado}" 
+                            update="eventDetails" oncomplete="caixaDialogo.show()" />  
+                    <p:ajax event="eventMove" listener="#{eventoManager.quandoMovido}" 
+                            update="mensagens" oncomplete="meucalendario.update()" />  
+                    <p:ajax event="eventResize" listener="#{eventoManager.quandoRedimensionado}" 
+                            update="mensagens" oncomplete="meucalendario.update()"/>  
+        
+                </p:schedule>
+                
+                <p:dialog widgetVar="caixaDialogo" 
+                          header="Evento"  width="500"
+                          resizable="false" modal="true"
+                          showEffect="clip" hideEffect="clip">  
+                    
+                    <p:outputPanel 
+                        id="eventDetails">
+                        
+                        <h:panelGrid columns="2">  
+                          
+                            
+                            <h:outputLabel for="descricao" value="Descrição:" /> 
+                            <p:inputText 
+                                id="descricao" 
+                                maxlength="60"
+                                readonly="true" disabled="true"
+                                value="#{eventoManager.objeto.descricao}" />  
+
+                            <h:outputLabel for="inicio" value="Início:" />  
+                            <p:calendar id="inicio" 
+                                readonly="true" disabled="true"
+                                value="#{eventoManager.objeto.dataInicio}" 
+                                pattern="dd/MM/yyyy HH:mm"/>
+
+                            <h:outputLabel for="fim" value="Fim:" />  
+                            <p:calendar id="fim" 
+                                readonly="true" disabled="true"
+                                value="#{eventoManager.objeto.dataFim}" 
+                                pattern="dd/MM/yyyy HH:mm"/>
+
+                            <h:outputLabel for="diaTodo" value="Dia todo?:" />  
+                            <h:selectBooleanCheckbox 
+                                id="diaTodo"
+                                readonly="true"
+                                value="#{eventoManager.objeto.diaTodo}" />  
+
+                        </h:panelGrid>  
+                        
+                       
+                        
+                    </p:outputPanel>
+                    
+                </p:dialog>  
+                
+            </h:form> 
+
+        </div><!-- end fluid-container -->
+	</ui:define>
+</ui:composition>
+</html>
+

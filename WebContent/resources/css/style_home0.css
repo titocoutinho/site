@@ -1,0 +1,116 @@
+/* Normalization
+*********************************************************************************************/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#444;}
+
+/* Setup
+*********************************************************************************************/
+
+body {
+    font: 18px/30px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    background-color: #ffffff;
+	background: url("/site//resources/img/bg0.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+    color: #444444;
+    text-align: center;
+    padding-top: 100px;
+}
+
+a {
+    color: #444444;
+    text-decoration: none;
+    -webkit-transition-duration: .2s;
+    -moz-transition-duration: .2s;
+}
+
+::selection,
+::-moz-selection { 
+    background: #fff186; 
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 42px;
+    margin: 0 0 30px;
+}
+
+/* Palets
+*********************************************************************************************/
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.white
+{
+    color: #ffffff;
+}
+
+.white.translucent {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+.black {
+    color: #444444;
+}
+
+.black.translucent{
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Containers
+*********************************************************************************************/
+
+header,
+section ,
+nav {
+    width: 600px;
+    margin: 0px auto;
+
+    position: relative;
+}
+
+/* Nav
+*********************************************************************************************/
+
+nav {
+    margin-top: 100px;
+    padding-bottom: 40px;
+}
+
+nav ul {
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li:after {
+    content: "/";
+    padding: 0 10px 0 15px;
+}
+
+nav ul li:last-child:after {
+    content: "";
+    padding: 0;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+/* Header
+*********************************************************************************************/
+
+header img {
+    max-width: 450px;
+	padding-bottom: 40px;
+}

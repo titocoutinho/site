@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="/WEB-INF/template/admin/layoutBaseSemMenu.xhtml">
+	<ui:define name="titulo">
+		Esqueci minha senha
+	</ui:define>
+	<ui:define name="form">
+		<h:form id="formlinks" prependId="false">
+			<h:panelGrid columns="2" styleClass="tabcontent">
+				<p:outputLabel value="Email: " for="cpf"/>
+				<p:inputMask styleClass="loginform_input"   value="#{autenticadorManager.recuperaCPF}" id="cpf" required="true"   requiredMessage="CPF é Obrigatório"/>
+				<p:outputLabel  value="Nascimento: " for="nascimento" />
+				<p:calendar styleClass="form_select"  yearRange="c-100:c+10" value="#{autenticadorManager.recuperaNascimento}" locale="pt_BR" pattern="dd/MM/yyyy" showButtonPanel="true" navigator="true" required="true"  id="nascimento" requiredMessage="Data de Nascimento  é Obrigatório"/>
+				<p:spacer/><p:spacer/>
+				<p:outputLabel value="Sua senha: " />
+				<p:outputLabel value="#{autenticadorManager.senhaRecuperada}" id="senhaRecuperada"/>
+				<p:spacer/>
+				<p:commandButton styleClass="form_submit" value="Lembrar" action="#{autenticadorManager.recuperarSenha()}" id="recuperar" update="senhaRecuperada mensagem" />
+			</h:panelGrid>
+		
+		
+		<p:messages id="mensagem"/>
+		</h:form>
+		
+	</ui:define>
+	<ui:define name="links">
+		<h:form id="formlink11s" prependId="false">
+					<h:panelGrid columns="3">
+					<h:commandLink value="Não tenho cadastro"  action="./cadastroSite.jsf" id="tt1000"/>
+						<h:outputText value="  /   " />
+					<h:commandLink value="Entrar no Sistema" action="./login.jsf" id="tt200"/>
+					 
+					
+				</h:panelGrid>
+				</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+

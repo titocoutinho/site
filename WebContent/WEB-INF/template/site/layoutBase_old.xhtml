@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8"/>  
+
+	<meta name="description" content="" />
+	<meta name="author" content="Gilvan Filho" />
+	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/favicon.ico" />
+	<title>Amut - Associação dos municípios da transamazônicas, Santarém-Cuiabá e Região Oeste do Pará</title>
+	<META HTTP-EQUIV='Pragma' CONTENT='no-cache' />
+	<META HTTP-EQUIV="Expires" CONTENT="-1" />
+
+	<h:outputScript name="html5.js" library="js" />
+
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap-responsive.min.css" />
+
+	<style type="text/css">
+	body {
+		
+		background: #DDDCEE url("#{request.contextPath}/resources/img/content_bg.jpg") repeat left top;
+	}
+	.corpo_site{
+		padding-top: 120px;
+	}
+
+	.carousel-navbar {
+		padding-top: 5px;
+		padding-bottom: 5px;
+    	text-align: center;
+    	background: #000; 
+	}
+
+	.carousel-navbar span {
+	padding-top: 5px;
+   		padding: 5px;
+    	-webkit-user-select: none;
+    	-moz-user-select: -moz-none;
+    	user-select: none;
+    	-webkit-user-drag: none;
+    	-moz-user-drag: -moz-none;
+    	user-drag: none;
+    	line-height: 0;
+    	text-decoration: none;
+    	text-indent: -999px;
+    	overflow: hidden;
+    	display: inline-block;
+    	padding: 6px;
+	    width: 0;
+	    height: 0;
+	    margin: 0 3px;
+	    color: #333;
+	    background-color: rgba(255,255,255,0.3);
+	    -webkit-transition: background-color 0.1s ease-in;
+	    -moz-transition: background-color 0.1s ease-in;
+	    -o-transition: background-color 0.1s ease-in;
+	    transition: background-color 0.1s ease-in;
+	    -webkit-box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px;
+	    -moz-box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px;
+	    box-shadow: inset rgba(0,0,0,0.25) 0 1px 2px;
+	    -webkit-border-radius: 6px;
+	    -moz-border-radius: 6px;
+	    border-radius: 6px;
+	}
+
+	.carousel-navbar span:hover, .carousel-navbar span:focus {
+		text-decoration: none;
+	    background-color: rgba(255,255,255,0.6);
+	}
+	
+	.carousel-navbar span.current {
+		background-color: #fff;
+	}
+</style>
+
+
+</h:head>	
+
+<h:body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+<ui:include src="./topo.xhtml" />
+
+	
+		
+
+		<div class="container corpo_site">
+		
+			<ui:insert name="main" />
+
+		</div>
+		
+		<hr />
+		<!-- /container -->
+	
+
+	<ui:include src="./rodape.xhtml" />
+
+	<h:outputScript name="jquery.min.js" library="js" />
+	<h:outputScript name="bootstrap.min.js" library="js" />
+
+	<script type="text/javascript">
+            $(document).ready(function() {        
+        $('#carousel').carousel({ interval: 2000 })
+            });
+
+            $('#carousel').bind('slid', function(e){ //This event is fired when the carousel has completed its slide transition.
+            	index = $('#carousel .item').index($('#carousel .carousel-inner .active')); // find the index of current slide
+            	$('.carousel-navbar .current').removeClass('current'); // reset the navigation
+            	$('.carousel-nav').eq(index).addClass('current'); // update the navigation
+            	});
+
+            $('.carousel-nav').bind('click', function(e){
+            	$('.carousel-navbar .current').removeClass('current'); // reset the navigation
+            	index = $('.carousel-nav').index(this); // find the clicked slide navigation
+            	$('#carousel').carousel(index); // navigate to the selected slider
+            	$(this).addClass('current'); // mark selected to the clicked navigation
+            	});
+        	
+	</script>
+
+</h:body>
+</html>

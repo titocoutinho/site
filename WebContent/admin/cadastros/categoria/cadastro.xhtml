@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutCadastro.xhtml">
+
+	<ui:param name="bean" value="#{categoriaManager}" />
+	<ui:param name="cadastro" value="true" />
+	<ui:define name="cadastro">
+
+		<p:outputLabel value="Nome :" />
+		<p:inputText value="#{bean.objeto.nome}" styleClass="loginform_input" />
+		<p:outputLabel value="URL Definida :" />
+		<p:inputText value="#{bean.objeto.urlDefinida}"
+			styleClass="loginform_input" />
+			<p:outputLabel value="Prioridade :" />
+		<p:inputText value="#{bean.objeto.prioridade}" styleClass="loginform_input" />
+		<p:outputLabel value="ativo" />
+		<p:selectBooleanCheckbox value="#{bean.objeto.ativo}" />
+
+	</ui:define>
+	
+		<ui:define name="alterar">
+
+		<p:outputLabel value="Nome :" />
+		<p:inputText value="#{bean.objeto.nome}" styleClass="loginform_input" />
+		<p:outputLabel value="URL Definida :" />
+		<p:inputText value="#{bean.objeto.urlDefinida}" styleClass="loginform_input" />
+		<p:outputLabel value="Prioridade :" />
+		<p:inputText value="#{bean.objeto.prioridade}" styleClass="loginform_input" />
+		<p:outputLabel value="ativo" />
+		<p:selectBooleanCheckbox value="#{bean.objeto.ativo}" />
+
+	</ui:define>
+	
+	<ui:define name="lista">
+		<p:column headerText="Nome">
+			<center>
+				<p:outputLabel value="#{item.nome}" />
+			</center>
+		</p:column>
+		<p:column headerText="Url Definida">
+			<center>
+				<p:outputLabel value="#{item.urlDefinida}" />
+			</center>
+		</p:column>
+		<p:column headerText="Prioridade">
+			<center>
+				<p:outputLabel value="#{item.prioridade}" />
+			</center>
+		</p:column>
+		<p:column headerText="Ativo">
+			<center>
+				<p:outputLabel value="#{item.ativo}" />
+			</center>
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+</html>
+

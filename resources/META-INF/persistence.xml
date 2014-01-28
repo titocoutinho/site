@@ -1,0 +1,63 @@
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="site_PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/comp/env/jdbc/site</non-jta-data-source>
+		<class>desenv.modelo.entidade.acesso.Permissao</class>
+		<class>desenv.modelo.entidade.acesso.Usuario</class>
+		<class>desenv.modelo.entidade.conteudo.Artigo</class>
+		<class>desenv.modelo.entidade.conteudo.Evento</class>
+		<class>desenv.modelo.entidade.conteudo.Comunicacao</class>
+		<class>desenv.modelo.entidade.conteudo.Galeria</class>
+		<class>desenv.modelo.entidade.conteudo.Imagem</class>
+		<class>desenv.modelo.entidade.conteudo.Categoria</class>
+		<class>desenv.modelo.entidade.conteudo.Comentario</class>
+		<class>desenv.modelo.entidade.demografia.Caracteristica</class>
+		<class>desenv.modelo.entidade.demografia.Dado</class>
+		
+		<class>desenv.modelo.entidade.demografia.Municipio</class>
+		<class>desenv.modelo.entidade.auxiliar.Parametro</class>
+		
+		<class>desenv.modelo.entidade.demografia.Prefeito</class>
+		<class>desenv.modelo.entidade.conteudo.SubCategoria</class>
+		
+		<class>desenv.util.generico.modelo.Modelo</class>
+		<class>desenv.modelo.entidade.acesso.Contador</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="root" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://127.0.0.1/site_amut?createDatabaseIfNotExist=true" /> -->
+			<!-- <property name="javax.persistence.jdbc.password" value="2BPzgTQk1x" 
+				/> <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql-desenvolvimento.jelastic.websolute.net.br/site_amut?createDatabaseIfNotExist=true" 
+				/> -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.connection.pool_size" value="1"/>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.check-valid-connection-sql" value="select 0 from dual"/>
+			<property name="hibernate.cache.use_second_level_cache" value="false" />
+			<property name="hibernate.cache.use_query_cache" value="false" />
+			<property name="hibernate.jdbc.batch_size" value="20" />
+			<property name="hibernate.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+			<property name="hibernate.format_sql" value="false" />
+			
+			<!-- C3PO -->
+			<property name="c3p0.acquireIncrement" value="hibernate.c3p0.acquire_increment" />
+			<property name="c3p0.idleConnectionTestPeriod" value="hibernate.c3p0.idle_test_period" />
+			<property name="c3p0.initialPoolSize" value="10" />
+			<property name="c3p0.maxIdleTime" value="hibernate.c3p0.timeout" />
+			<property name="c3p0.maxPoolSize" value="hibernate.c3p0.max_size" />
+			<property name="c3p0.maxStatements" value="hibernate.c3p0.max_statements" />
+			<property name="c3p0.minPoolSize" value="hibernate.c3p0.min_size" />
+			<property name="c3p0.testConnectionsOnCheckout" value="hibernate.c3p0.validate" />
+			<property name="c3p0.testConnectionOnCheckin" value="true" />
+			<property name="c3p0.checkoutTimeout" value="0" />
+
+		</properties>
+	</persistence-unit>
+</persistence>

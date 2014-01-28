@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="/WEB-INF/template/admin/layoutBaseSemMenu.xhtml">
+	<ui:define name="titulo">
+		Login
+	</ui:define>
+	<ui:define name="form">
+		<center>
+			<h:form prependId="false" id="loginForm">
+				
+				<h:panelGrid columns="2">
+
+					<p:outputLabel value="Usuário :" for="logi" />
+					<p:inputMask styleClass="loginform_input"  value="#{autenticadorManager.login}"
+						id="logi" tabindex="0" 
+						 required="true"
+						requiredMessage="CPF é Obrigatório" />
+
+
+					<p:outputLabel value="Senha:" for="senh" />
+					<p:password styleClass="loginform_input" value="#{autenticadorManager.senha}" id="senh" tabindex="0"
+						required="true" requiredMessage="Senha é Obrigatório" />
+
+
+					<p:message for="btt" />
+					<h:panelGrid columns="2">
+						<p:message for="btt" />
+						<p:commandButton value="Entrar"
+							action="#{autenticadorManager.entrar()}" id="btt"
+							update="@form @parent" />
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+				<p:messages escape="false"/>
+			</h:form>
+
+		</center>
+	</ui:define>
+	<ui:define name="links">
+		<h:form id="formlinks" prependId="false">
+			<h:panelGrid columns="3">
+				
+				<h:commandLink value="Esqueci Minha Senha"
+					action="./esqueciMinhaSenha.jsf" id="tt2" />
+
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+

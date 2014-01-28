@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/template/admin/layoutBase.xhtml">
+	<ui:define name="main">
+	
+
+		<h:form prependId="false" id="form" enctype="multipart/form-data">
+		<p:growl id="mensagens_"/>
+			<!-- <p:tabView id="abas">
+				<p:tab title="Cadastro" titletip="Dados Cadastrais"> -->
+					<h:inputHidden value="#{bean.objeto.id}" id="identificador" />
+					
+<div style="width: 90%;">
+						<ui:insert name="cadastro" />
+</div>
+
+
+
+					
+					<ui:insert name="extra"/>
+				<!-- </p:tab>
+				<p:tab title="Lista" id="lista"> -->
+					
+			<!-- 	</p:tab>
+			</p:tabView> -->
+		</h:form>
+		
+		
+	</ui:define>
+	
+	
+</ui:composition>
+</html>
+

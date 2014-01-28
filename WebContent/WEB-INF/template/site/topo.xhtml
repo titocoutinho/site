@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:component>
+			<div class="navbar  navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="" href="#{request.contextPath}/index.php?contador=1"> 
+					<img src="#{request.contextPath}/resources/img/logo1.png" style="height: 75px;" />
+				</a>
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							<c:forEach items="#{menuManager.categorias}" var="item">
+								<c:choose>
+									<c:when test="${fn:length(item.subcategorias)>0}">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">${item.nome}<b class="caret"/></a>
+											<ul class="dropdown-menu">
+												<c:forEach items="${item.subcategorias}" var="sub">
+													<li><a href="#{request.contextPath}/a/municipio.php?municipio=${sub.nomeSemAcento}">${sub.nome}</a></li>
+												</c:forEach>
+											</ul>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${item.urlDefinida == null or empty item.urlDefinida or item.urlDefinida == ''}">
+												<li>
+													<a href="#{request.contextPath}/categoria.php?categoria=${item.id}">${item.nome}</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="#{request.contextPath}/${item.urlDefinida}">${item.nome}</a>
+												</li>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<!-- <li><a href="#{request.contextPath}/admin/login/login.php"  class="scroller" data-section="#features">Entrar</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>			
+	</ui:component>
+</html>
